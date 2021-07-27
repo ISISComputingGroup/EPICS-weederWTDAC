@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.weeder.WEEDERTests-20210726153848" tests="1" file="tests/weeder.py" time="0.004" timestamp="2021-07-26T15:39:39" failures="0" errors="0" skipped="0">
+	<testcase classname="tests.weeder.WEEDERTests" name="test_SOMETHING" time="0.004" timestamp="2021-07-26T15:39:39" file="tests\weeder.py" line="40"/>
+</testsuite>

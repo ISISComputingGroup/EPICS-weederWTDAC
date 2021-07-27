@@ -1,0 +1,49 @@
+record(ao, "$(P)VOLT:SP") {
+   field(DESC, "Sets the voltage")
+   field(DTYP, "stream")
+   field(OUT, "@devWeeder.proto set_voltage $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:VOLT:SP")
+   field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)VOLT") {
+   field(DESC, "Gets the voltage")
+   field(DTYP, "stream")
+   field(INP, "@devWeeder.proto get_voltage $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:VOLT")
+   field(SDIS, "$(P)DISABLE")
+   field(SCAN, "1 second")
+}
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+## SIMULATION STUFF ##
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+alias("$(P)SIM", "$(P)SIM:SP")
+
+record(ai, "$(P)SIM:VOLT") {
+   field(SCAN, "Passive")
+   field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:VOLT","$(P)SIM:VOLT:SP")
+alias("$(P)SIM:VOLT","$(P)SIM:VOLT:SP:RBV")
+
+
+
+
