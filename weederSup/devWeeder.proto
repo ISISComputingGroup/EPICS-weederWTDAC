@@ -1,7 +1,7 @@
 OutTerminator = "\r\n";
 InTerminator = "\r\r\n";
 ReplyTimeout = 2000;
-ExtraInput = Ignore;
+
 
 set_voltage {
 	out "V A %d";
@@ -10,31 +10,45 @@ get_voltage {
 	out "V A";
     in "V A %d";
 }
-
 set_trapezoid {
     out "T A %d";
+    in "T A %d";
 }
-
 set_scurve {
-
+    out "S A %d";
+    in "S A %d";
 }
-
 set_padding {
-    out "V A %d"
+    out "P A %d";
 }
 get_padding {
-    out "V A %d"
-    in
+    out "P A";
+    in "P A %d";
 }
 set_ramprate {
-
+    out "R A %d";
+}
+get_ramprate {
+    out "R A";
+    in "R A %d";
 }
 set_wait {
-
+    out "W %d";
+    in "W %d";
+}
+set_default {
+    out "D A %d";
+}
+get_default {
+    out "D A";
+    in "D A %d";
 }
 set_calibrate {
+    out "C A %d %d";
+    in "C A %d %d";
 
 }
 set_echo {
+    out "X %d";
 
 }

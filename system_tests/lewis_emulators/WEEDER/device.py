@@ -4,7 +4,7 @@ from .states import DefaultState
 from collections import OrderedDict
 
 
-class SimulatedCCD100(StateMachineDevice):
+class SimulatedWeeder(StateMachineDevice):
 
     def _initialize_data(self):
         self.connected = True
@@ -15,6 +15,13 @@ class SimulatedCCD100(StateMachineDevice):
         self.current_reading = 0
         self.speed = 1
         self.voltage = 0
+        self.trapezoid = 0
+        self.scurve = 0
+        self.padding = 0
+        self.ramprate = 0
+        self.wait = 0
+        self.default = 0
+        #self.calibrate = 0
 
         # When the device is in an error state it can respond with junk
         self.is_giving_errors = False

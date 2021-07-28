@@ -1,5 +1,5 @@
-from .device import SimulatedCCD100
+from .device import SimulatedWeeder
 from ..lewis_versions import LEWIS_LATEST
 
 framework_version = LEWIS_LATEST
-__all__ = ['SimulatedCCD100']
+__all__ = ['SimulatedWeeder']

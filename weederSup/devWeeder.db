@@ -16,6 +16,133 @@ record(ai, "$(P)VOLT") {
    field(SDIS, "$(P)DISABLE")
    field(SCAN, "1 second")
 }
+
+record(ao, "$(P)RAMPVOLT_T:SP") {
+    field(DESC, "Ramps the voltage ")
+    field(DTYP, "stream")
+    field(OUT, "@devWeeder.proto set_trapezoid $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMPVOLT_T:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ai, "$(P)RAMPVOLT_T") {
+   field(DESC, "Gets the ramp voltage")
+   field(DTYP, "stream")
+   field(INP, "@devWeeder.proto set_trapezoid $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:RAMPVOLT_T")
+   field(SDIS, "$(P)DISABLE")
+   field(SCAN, "1 second")
+}
+
+record(ao, "$(P)RAMPVOLT_S:SP") {
+    field(DESC, "Ramps the voltage")
+    field(DTYP, "stream")
+    field(OUT, "@devWeeder.proto set_scurve $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:RAMPVOLT_S:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ai, "$(P)RAMPVOLT_S") {
+   field(DESC, "Gets the ramp voltage")
+   field(DTYP, "stream")
+   field(INP, "@devWeeder.proto set_scurve $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:RAMPVOLT_S")
+   field(SDIS, "$(P)DISABLE")
+   field(SCAN, "1 second")
+}
+record(ao, "$(P)PADDING:SP") {
+   field(DESC, "Sets magnitude of curvature")
+   field(DTYP, "stream")
+   field(OUT, "@devWeeder.proto set_padding $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:PADDING:SP")
+   field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)PADDING") {
+   field(DESC, "Gets magnitude of curvature")
+   field(DTYP, "stream")
+   field(INP, "@devWeeder.proto get_padding $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:PADDING")
+   field(SDIS, "$(P)DISABLE")
+   field(SCAN, "1 second")
+}
+record(ao, "$(P)RAMPRATE:SP") {
+   field(DESC, "Sets the ramp rate used ")
+   field(DTYP, "stream")
+   field(OUT, "@devWeeder.proto set_ramprate $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:RAMPRATE:SP")
+   field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)RAMPRATE") {
+   field(DESC, "Gets the ramp rate")
+   field(DTYP, "stream")
+   field(INP, "@devWeeder.proto get_ramprate $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:RAMPRATE")
+   field(SDIS, "$(P)DISABLE")
+   field(SCAN, "1 second")
+}
+
+record(ao, "$(P)WAIT:SP") {
+    field(DESC, "Sets wait time")
+    field(DTYP, "stream")
+    field(OUT, "@devWeeder.proto set_wait $(PORT)")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:WAIT:SP")
+    field(SDIS, "$(P)DISABLE")
+}
+record(ai, "$(P)WAIT") {
+   field(DESC, "Gets the wait time")
+   field(DTYP, "stream")
+   field(INP, "@devWeeder.proto set_wait $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:WAIT")
+   field(SDIS, "$(P)DISABLE")
+   field(SCAN, "1 second")
+}
+record(ao, "$(P)DEFAULT:SP") {
+   field(DESC, "Sets the default voltage")
+   field(DTYP, "stream")
+   field(OUT, "@devWeeder.proto set_default $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:DEFAULT:SP")
+   field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)DEFAULT") {
+   field(DESC, "Gets the default voltage")
+   field(DTYP, "stream")
+   field(INP, "@devWeeder.proto get_default $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:DEFAULT")
+   field(SDIS, "$(P)DISABLE")
+   field(SCAN, "1 second")
+}
+record(ao, "$(P)CALIBRATE:SP") {
+   field(DESC, "Sets the calibration")
+   field(DTYP, "stream")
+   field(OUT, "@devWeeder.proto set_calibrate $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:CALIBRATE:SP")
+   field(SDIS, "$(P)DISABLE")
+}
+
+record(ai, "$(P)CALIBRATE") {
+   field(DESC, "Gets the calibration")
+   field(DTYP, "stream")
+   field(INP, "@devWeeder.proto set_calibrate $(PORT)")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:CALIBRATE")
+   field(SDIS, "$(P)DISABLE")
+   field(SCAN, "1 second")
+}
+
 record(bo, "$(P)DISABLE")
 {
     field(DESC, "Disable comms")
@@ -44,6 +171,58 @@ record(ai, "$(P)SIM:VOLT") {
 alias("$(P)SIM:VOLT","$(P)SIM:VOLT:SP")
 alias("$(P)SIM:VOLT","$(P)SIM:VOLT:SP:RBV")
 
+record(ai, "$(P)SIM:RAMPVOLT_T") {
+   field(SCAN, "Passive")
+   field(DTYP, "Soft Channel")
+}
 
+alias("$(P)SIM:RAMPVOLT_T","$(P)SIM:RAMPVOLT_T:SP")
+alias("$(P)SIM:RAMPVOLT_T","$(P)SIM:RAMPVOLT_T:SP:RBV")
 
+record(ai, "$(P)SIM:RAMPVOLT_S") {
+   field(SCAN, "Passive")
+   field(DTYP, "Soft Channel")
+}
 
+alias("$(P)SIM:RAMPVOLT_S","$(P)SIM:RAMPVOLT_S:SP")
+alias("$(P)SIM:RAMPVOLT_S","$(P)SIM:RAMPVOLT_S:SP:RBV")
+
+record(ai, "$(P)SIM:PADDING") {
+   field(SCAN, "Passive")
+   field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:PADDING","$(P)SIM:PADDING:SP")
+alias("$(P)SIM:PADDING","$(P)SIM:PADDING:SP:RBV")
+
+record(ai, "$(P)SIM:RAMPRATE") {
+   field(SCAN, "Passive")
+   field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:RAMPRATE","$(P)SIM:RAMPRATE:SP")
+alias("$(P)SIM:RAMPRATE","$(P)SIM:RAMPRATE:SP:RBV")
+
+record(ai, "$(P)SIM:WAIT") {
+   field(SCAN, "Passive")
+   field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:WAIT","$(P)SIM:WAIT:SP")
+alias("$(P)SIM:WAIT","$(P)SIM:WAIT:SP:RBV")
+
+record(ai, "$(P)SIM:DEFAULT") {
+   field(SCAN, "Passive")
+   field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:DEFAULT","$(P)SIM:DEFAULT:SP")
+alias("$(P)SIM:DEFAULT","$(P)SIM:DEFAULT:SP:RBV")
+
+record(ai, "$(P)SIM:CALIBRATE") {
+   field(SCAN, "Passive")
+   field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:CALIBRATE","$(P)SIM:CALIBRATE:SP")
+alias("$(P)SIM:CALIBRATE","$(P)SIM:CALIBRATE:SP:RBV")
