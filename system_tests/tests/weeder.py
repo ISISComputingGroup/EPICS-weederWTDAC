@@ -49,8 +49,8 @@ class WEEDERTests(unittest.TestCase):
     def test_WHEN_set_ramp_rate_THEN_get_ramp_rate_correctly(self):
         self.ca.assert_setting_setpoint_sets_readback(100, "RAMPRATE")
 
-    def test_WHEN_set_wait_THEN_get_wait_correctly(self):
-        self.ca.assert_setting_setpoint_sets_readback(100, "WAIT")
+    # def test_WHEN_set_wait_THEN_get_wait_correctly(self):
+    #     self.ca.assert_setting_setpoint_sets_readback(100, "WAIT")
 
     def test_WHEN_set_default_voltage_THEN_get_default_voltage_correctly(self):
         self.ca.assert_setting_setpoint_sets_readback(100, "DEFAULT")

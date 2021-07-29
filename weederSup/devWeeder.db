@@ -28,7 +28,7 @@ record(ao, "$(P)RAMPVOLT_T:SP") {
 record(ai, "$(P)RAMPVOLT_T") {
    field(DESC, "Gets the ramp voltage")
    field(DTYP, "stream")
-   field(INP, "@devWeeder.proto set_trapezoid $(PORT)")
+   field(INP, "@devWeeder.proto get_trapezoid $(PORT)")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:RAMPVOLT_T")
    field(SDIS, "$(P)DISABLE")
@@ -46,7 +46,7 @@ record(ao, "$(P)RAMPVOLT_S:SP") {
 record(ai, "$(P)RAMPVOLT_S") {
    field(DESC, "Gets the ramp voltage")
    field(DTYP, "stream")
-   field(INP, "@devWeeder.proto set_scurve $(PORT)")
+   field(INP, "@devWeeder.proto get_scurve $(PORT)")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:RAMPVOLT_S")
    field(SDIS, "$(P)DISABLE")
@@ -96,16 +96,10 @@ record(ao, "$(P)WAIT:SP") {
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAIT:SP")
     field(SDIS, "$(P)DISABLE")
+
 }
-record(ai, "$(P)WAIT") {
-   field(DESC, "Gets the wait time")
-   field(DTYP, "stream")
-   field(INP, "@devWeeder.proto set_wait $(PORT)")
-   field(SIML, "$(P)SIM")
-   field(SIOL, "$(P)SIM:WAIT")
-   field(SDIS, "$(P)DISABLE")
-   field(SCAN, "1 second")
-}
+alias("$(P)WAIT:SP","$(P)WAIT")
+
 record(ao, "$(P)DEFAULT:SP") {
    field(DESC, "Sets the default voltage")
    field(DTYP, "stream")
@@ -124,24 +118,7 @@ record(ai, "$(P)DEFAULT") {
    field(SDIS, "$(P)DISABLE")
    field(SCAN, "1 second")
 }
-record(ao, "$(P)CALIBRATE:SP") {
-   field(DESC, "Sets the calibration")
-   field(DTYP, "stream")
-   field(OUT, "@devWeeder.proto set_calibrate $(PORT)")
-   field(SIML, "$(P)SIM")
-   field(SIOL, "$(P)SIM:CALIBRATE:SP")
-   field(SDIS, "$(P)DISABLE")
-}
 
-record(ai, "$(P)CALIBRATE") {
-   field(DESC, "Gets the calibration")
-   field(DTYP, "stream")
-   field(INP, "@devWeeder.proto set_calibrate $(PORT)")
-   field(SIML, "$(P)SIM")
-   field(SIOL, "$(P)SIM:CALIBRATE")
-   field(SDIS, "$(P)DISABLE")
-   field(SCAN, "1 second")
-}
 
 record(bo, "$(P)DISABLE")
 {
@@ -219,10 +196,3 @@ record(ai, "$(P)SIM:DEFAULT") {
 alias("$(P)SIM:DEFAULT","$(P)SIM:DEFAULT:SP")
 alias("$(P)SIM:DEFAULT","$(P)SIM:DEFAULT:SP:RBV")
 
-record(ai, "$(P)SIM:CALIBRATE") {
-   field(SCAN, "Passive")
-   field(DTYP, "Soft Channel")
-}
-
-alias("$(P)SIM:CALIBRATE","$(P)SIM:CALIBRATE:SP")
-alias("$(P)SIM:CALIBRATE","$(P)SIM:CALIBRATE:SP:RBV")

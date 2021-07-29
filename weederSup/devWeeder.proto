@@ -12,10 +12,18 @@ get_voltage {
 }
 set_trapezoid {
     out "T A %d";
+
+}
+get_trapezoid {
+    out "T A";
     in "T A %d";
 }
 set_scurve {
     out "S A %d";
+
+}
+get_scurve {
+    out "S A";
     in "S A %d";
 }
 set_padding {
@@ -27,6 +35,7 @@ get_padding {
 }
 set_ramprate {
     out "R A %d";
+
 }
 get_ramprate {
     out "R A";
@@ -34,7 +43,6 @@ get_ramprate {
 }
 set_wait {
     out "W %d";
-    in "W %d";
 }
 set_default {
     out "D A %d";
@@ -43,11 +51,7 @@ get_default {
     out "D A";
     in "D A %d";
 }
-set_calibrate {
-    out "C A %d %d";
-    in "C A %d %d";
 
-}
 set_echo {
     out "X %d";
 

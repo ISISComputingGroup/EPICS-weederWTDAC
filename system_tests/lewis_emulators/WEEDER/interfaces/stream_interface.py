@@ -9,7 +9,9 @@ class WeederStreamInterface(StreamInterface):
     commands = {
         CmdBuilder("set_voltage").escape("V ").char().escape(" ").int().eos().build(),
         CmdBuilder("get_voltage").escape("V ").char().eos().build(),
+        CmdBuilder("get_trapezoid").escape("T ").char().eos().build(),
         CmdBuilder("set_trapezoid").escape("T ").char().escape(" ").int().eos().build(),
+        CmdBuilder("get_scurve").escape("S ").char().eos().build(),
         CmdBuilder("set_scurve").escape("S ").char().escape(" ").int().eos().build(),
         CmdBuilder("set_padding").escape("P ").char().escape(" ").int().eos().build(), #default val = 2
         CmdBuilder("get_padding").escape("P ").char().eos().build(),
@@ -35,43 +37,43 @@ class WeederStreamInterface(StreamInterface):
         self._device.trapezoid = trapezoid_sp
         print(f"Get trapezoid {trapezoid_sp} from {address}")
 
-    def get_trapezoid(self, address):
-        return f"V{address} {self._device.trapezoid}"
+    def get_trapezoid(self,address):
+        return f"T {address} {self._device.trapezoid}"
 
     def set_scurve(self, address, scurve_sp):
         self._device.scurve = scurve_sp
         print(f"Get S curve {scurve_sp} from {address}")
 
     def get_scurve(self, address):
-        return f"V{address} {self._device.scurve}"
+        return f"S {address} {self._device.scurve}"
 
     def set_padding(self, address, padding_sp):
         self._device.padding = padding_sp
         print(f"Get padding {padding_sp} from {address}")
 
     def get_padding(self,address):
-        return f"V{address} {self._device.padding}"
+        return f"P {address} {self._device.padding}"
 
     def set_ramprate(self, address, ramprate_sp):
         self._device.ramprate = ramprate_sp
         print (f"Get ramp rate {ramprate_sp} from {address}")
 
     def get_ramprate(self,address):
-        return f"V{address} {self._device.padding}"
+        return f"R {address} {self._device.padding}"
 
     def set_wait(self, wait_sp):
         self._device.wait = wait_sp
         print (f"Get wait time {wait_sp} ")
 
     def get_wait(self, wait_sp):
-        return f"V{self._device.wait}"
+        return f"W {self._device.wait}"
 
-    def set_default(self,address, default_sp):
+    def set_default(self, address, default_sp):
         self._device.default = default_sp
         print(f"Get default voltage {default_sp} from {address}")
 
-    def get_default(self, default_sp):
-        return f"V{self._device.default}"
+    def get_default(self, address):
+        return f"D {address} {self._device.default}"
 
     # def set_calibrate(self, address, calibrate_sp):
     #     self._device.calibrate = calibrate_sp
