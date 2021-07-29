@@ -65,9 +65,6 @@ class WeederStreamInterface(StreamInterface):
         self._device.wait = wait_sp
         print (f"Get wait time {wait_sp} ")
 
-    def get_wait(self, wait_sp):
-        return f"W {self._device.wait}"
-
     def set_default(self, address, default_sp):
         self._device.default = default_sp
         print(f"Get default voltage {default_sp} from {address}")
