@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.weeder.WEEDERTests-20210728110258" tests="5" file="tests/weeder.py" time="4.796" timestamp="2021-07-28T11:03:09" failures="0" errors="0" skipped="0">
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_padding_THEN_get_padding_correctly" time="0.776" timestamp="2021-07-28T11:03:05" file="tests\weeder.py" line="48"/>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_ramp_rate_THEN_get_ramp_rate_correctly" time="1.004" timestamp="2021-07-28T11:03:06" file="tests\weeder.py" line="50"/>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_scurve_ramping_voltage_THEN_get_ramping_voltage_correctly" time="0.978" timestamp="2021-07-28T11:03:07" file="tests\weeder.py" line="46"/>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_trapezoid_ramping_voltage_THEN_get_ramping_voltage_correctly" time="1.012" timestamp="2021-07-28T11:03:08" file="tests\weeder.py" line="44"/>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_voltage_THEN_get_voltage_back_correctly" time="1.026" timestamp="2021-07-28T11:03:09" file="tests\weeder.py" line="42"/>
+</testsuite>

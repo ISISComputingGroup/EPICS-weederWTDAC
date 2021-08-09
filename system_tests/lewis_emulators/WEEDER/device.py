@@ -18,7 +18,7 @@ class SimulatedWeeder(StateMachineDevice):
         self.trapezoid = 0
         self.scurve = 0
         self.padding = 0
-        self.ramprate = 0
+        self.ramprate = 500
         self.wait = 0
         self.default = 0
         #self.calibrate = 0

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.weeder.WEEDERTests-20210728140127" tests="7" file="tests/weeder.py" time="125.408" timestamp="2021-07-28T14:03:38" failures="6" errors="0" skipped="0">
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_voltage_THEN_get_voltage_back_correctly" time="4.660" timestamp="2021-07-28T14:03:18" file="tests\weeder.py" line="37"/>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_default_voltage_THEN_get_default_voltage_correctly" time="20.137" timestamp="2021-07-28T14:01:53" file="tests\weeder.py" line="55">
+		<failure type="AssertionError" message="Expected PV, 'TE:NDW1799:WEEDER_01:DEFAULT' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')"><![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\weeder\master\system_tests\tests\weeder.py", line 56, in test_WHEN_set_default_voltage_THEN_get_default_voltage_correctly
+    self.ca.assert_setting_setpoint_sets_readback(100, "DEFAULT")
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 554, in assert_setting_setpoint_sets_readback
+    self.assert_that_pv_is(readback_pv, expected_value, timeout=timeout)
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 269, in assert_that_pv_is
+    return self.assert_that_pv_value_causes_func_to_return_true(
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 248, in assert_that_pv_value_causes_func_to_return_true
+    raise AssertionError(err)
+AssertionError: Expected PV, 'TE:NDW1799:WEEDER_01:DEFAULT' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')
+]]></failure>
+	</testcase>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_padding_THEN_get_padding_correctly" time="20.115" timestamp="2021-07-28T14:02:13" file="tests\weeder.py" line="46">
+		<failure type="AssertionError" message="Expected PV, 'TE:NDW1799:WEEDER_01:PADDING' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')"><![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\weeder\master\system_tests\tests\weeder.py", line 47, in test_WHEN_set_padding_THEN_get_padding_correctly
+    self.ca.assert_setting_setpoint_sets_readback(100, "PADDING")
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 554, in assert_setting_setpoint_sets_readback
+    self.assert_that_pv_is(readback_pv, expected_value, timeout=timeout)
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 269, in assert_that_pv_is
+    return self.assert_that_pv_value_causes_func_to_return_true(
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 248, in assert_that_pv_value_causes_func_to_return_true
+    raise AssertionError(err)
+AssertionError: Expected PV, 'TE:NDW1799:WEEDER_01:PADDING' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')
+]]></failure>
+	</testcase>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_ramp_rate_THEN_get_ramp_rate_correctly" time="20.116" timestamp="2021-07-28T14:02:33" file="tests\weeder.py" line="49">
+		<failure type="AssertionError" message="Expected PV, 'TE:NDW1799:WEEDER_01:RAMPRATE' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')"><![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\weeder\master\system_tests\tests\weeder.py", line 50, in test_WHEN_set_ramp_rate_THEN_get_ramp_rate_correctly
+    self.ca.assert_setting_setpoint_sets_readback(100, "RAMPRATE")
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 554, in assert_setting_setpoint_sets_readback
+    self.assert_that_pv_is(readback_pv, expected_value, timeout=timeout)
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 269, in assert_that_pv_is
+    return self.assert_that_pv_value_causes_func_to_return_true(
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 248, in assert_that_pv_value_causes_func_to_return_true
+    raise AssertionError(err)
+AssertionError: Expected PV, 'TE:NDW1799:WEEDER_01:RAMPRATE' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')
+]]></failure>
+	</testcase>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_scurve_ramping_voltage_THEN_get_ramping_voltage_correctly" time="20.115" timestamp="2021-07-28T14:02:53" file="tests\weeder.py" line="43">
+		<failure type="AssertionError" message="Expected PV, 'TE:NDW1799:WEEDER_01:RAMPVOLT_S' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')"><![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\weeder\master\system_tests\tests\weeder.py", line 44, in test_WHEN_set_scurve_ramping_voltage_THEN_get_ramping_voltage_correctly
+    self.ca.assert_setting_setpoint_sets_readback(100, "RAMPVOLT_S")
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 554, in assert_setting_setpoint_sets_readback
+    self.assert_that_pv_is(readback_pv, expected_value, timeout=timeout)
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 269, in assert_that_pv_is
+    return self.assert_that_pv_value_causes_func_to_return_true(
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 248, in assert_that_pv_value_causes_func_to_return_true
+    raise AssertionError(err)
+AssertionError: Expected PV, 'TE:NDW1799:WEEDER_01:RAMPVOLT_S' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')
+]]></failure>
+	</testcase>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_trapezoid_ramping_voltage_THEN_get_ramping_voltage_correctly" time="20.127" timestamp="2021-07-28T14:03:13" file="tests\weeder.py" line="40">
+		<failure type="AssertionError" message="Expected PV, 'TE:NDW1799:WEEDER_01:RAMPVOLT_T' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')"><![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\weeder\master\system_tests\tests\weeder.py", line 41, in test_WHEN_set_trapezoid_ramping_voltage_THEN_get_ramping_voltage_correctly
+    self.ca.assert_setting_setpoint_sets_readback(100, "RAMPVOLT_T")
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 554, in assert_setting_setpoint_sets_readback
+    self.assert_that_pv_is(readback_pv, expected_value, timeout=timeout)
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 269, in assert_that_pv_is
+    return self.assert_that_pv_value_causes_func_to_return_true(
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 248, in assert_that_pv_value_causes_func_to_return_true
+    raise AssertionError(err)
+AssertionError: Expected PV, 'TE:NDW1799:WEEDER_01:RAMPVOLT_T' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')
+]]></failure>
+	</testcase>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_wait_THEN_get_wait_correctly" time="20.137" timestamp="2021-07-28T14:03:38" file="tests\weeder.py" line="52">
+		<failure type="AssertionError" message="Expected PV, 'TE:NDW1799:WEEDER_01:WAIT' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')"><![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\weeder\master\system_tests\tests\weeder.py", line 53, in test_WHEN_set_wait_THEN_get_wait_correctly
+    self.ca.assert_setting_setpoint_sets_readback(100, "WAIT")
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 554, in assert_setting_setpoint_sets_readback
+    self.assert_that_pv_is(readback_pv, expected_value, timeout=timeout)
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 269, in assert_that_pv_is
+    return self.assert_that_pv_value_causes_func_to_return_true(
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 248, in assert_that_pv_value_causes_func_to_return_true
+    raise AssertionError(err)
+AssertionError: Expected PV, 'TE:NDW1799:WEEDER_01:WAIT' to have value '100' (type: 'int').
+Final PV value was '0.0' (type: 'float')
+]]></failure>
+	</testcase>
+</testsuite>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.weeder.WEEDERTests-20210727150555" tests="2" file="tests/weeder.py" time="22.718" timestamp="2021-07-27T15:06:24" failures="1" errors="0" skipped="0">
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_voltage_THEN_get_voltage_back_correctly" time="0.957" timestamp="2021-07-27T15:06:24" file="tests\weeder.py" line="42"/>
+	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_ramping_voltage_THEN_get_ramping_voltage_correctly" time="21.760" timestamp="2021-07-27T15:06:23" file="tests\weeder.py" line="44">
+		<failure type="AssertionError" message="PV TE:NDW1799:WEEDER_01:RAMPVOLT:SP does not exist"><![CDATA[Traceback (most recent call last):
+  File "C:\Instrument\Apps\EPICS\support\weeder\master\system_tests\tests\weeder.py", line 45, in test_WHEN_set_ramping_voltage_THEN_get_ramping_voltage_correctly
+    self.ca.assert_setting_setpoint_sets_readback(100, "RAMPVOLT")
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 553, in assert_setting_setpoint_sets_readback
+    self.set_pv_value(set_point_pv, value, sleep_after_set=0)
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 119, in set_pv_value
+    self.assert_that_pv_exists(pv)
+  File "C:\Instrument\Apps\EPICS\support\IocTestFramework\master\utils\channel_access.py", line 482, in assert_that_pv_exists
+    raise AssertionError("PV {pv} does not exist".format(pv=pv))
+AssertionError: PV TE:NDW1799:WEEDER_01:RAMPVOLT:SP does not exist
+]]></failure>
+	</testcase>
+</testsuite>

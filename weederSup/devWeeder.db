@@ -1,7 +1,9 @@
 record(ao, "$(P)VOLT:SP") {
    field(DESC, "Sets the voltage")
    field(DTYP, "stream")
-   field(OUT, "@devWeeder.proto set_voltage $(PORT)")
+   field(EGU, "V")
+   field(OUT, "@devWeeder.proto set_voltage($(ADDRESS)) $(PORT)")
+   field(ASLO, ".01")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:VOLT:SP")
    field(SDIS, "$(P)DISABLE")
@@ -10,17 +12,22 @@ record(ao, "$(P)VOLT:SP") {
 record(ai, "$(P)VOLT") {
    field(DESC, "Gets the voltage")
    field(DTYP, "stream")
-   field(INP, "@devWeeder.proto get_voltage $(PORT)")
+   field(EGU, "V")
+   field(INP, "@devWeeder.proto get_voltage($(ADDRESS)) $(PORT)")
+   field(ASLO, ".01")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:VOLT")
    field(SDIS, "$(P)DISABLE")
    field(SCAN, "1 second")
 }
 
+
 record(ao, "$(P)RAMPVOLT_T:SP") {
     field(DESC, "Ramps the voltage ")
     field(DTYP, "stream")
-    field(OUT, "@devWeeder.proto set_trapezoid $(PORT)")
+    field(EGU, "V/sec")
+    field(OUT, "@devWeeder.proto set_trapezoid($(ADDRESS)) $(PORT)")
+    field(ASLO, ".01")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAMPVOLT_T:SP")
     field(SDIS, "$(P)DISABLE")
@@ -28,7 +35,9 @@ record(ao, "$(P)RAMPVOLT_T:SP") {
 record(ai, "$(P)RAMPVOLT_T") {
    field(DESC, "Gets the ramp voltage")
    field(DTYP, "stream")
-   field(INP, "@devWeeder.proto get_trapezoid $(PORT)")
+   field(EGU, "V/sec")
+   field(INP, "@devWeeder.proto get_trapezoid($(ADDRESS)) $(PORT)")
+   field(ASLO, ".01")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:RAMPVOLT_T")
    field(SDIS, "$(P)DISABLE")
@@ -38,7 +47,7 @@ record(ai, "$(P)RAMPVOLT_T") {
 record(ao, "$(P)RAMPVOLT_S:SP") {
     field(DESC, "Ramps the voltage")
     field(DTYP, "stream")
-    field(OUT, "@devWeeder.proto set_scurve $(PORT)")
+    field(OUT, "@devWeeder.proto set_scurve($(ADDRESS)) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:RAMPVOLT_S:SP")
     field(SDIS, "$(P)DISABLE")
@@ -46,7 +55,7 @@ record(ao, "$(P)RAMPVOLT_S:SP") {
 record(ai, "$(P)RAMPVOLT_S") {
    field(DESC, "Gets the ramp voltage")
    field(DTYP, "stream")
-   field(INP, "@devWeeder.proto get_scurve $(PORT)")
+   field(INP, "@devWeeder.proto get_scurve($(ADDRESS)) $(PORT)")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:RAMPVOLT_S")
    field(SDIS, "$(P)DISABLE")
@@ -55,7 +64,7 @@ record(ai, "$(P)RAMPVOLT_S") {
 record(ao, "$(P)PADDING:SP") {
    field(DESC, "Sets magnitude of curvature")
    field(DTYP, "stream")
-   field(OUT, "@devWeeder.proto set_padding $(PORT)")
+   field(OUT, "@devWeeder.proto set_padding($(ADDRESS)) $(PORT)")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:PADDING:SP")
    field(SDIS, "$(P)DISABLE")
@@ -64,35 +73,38 @@ record(ao, "$(P)PADDING:SP") {
 record(ai, "$(P)PADDING") {
    field(DESC, "Gets magnitude of curvature")
    field(DTYP, "stream")
-   field(INP, "@devWeeder.proto get_padding $(PORT)")
+   field(INP, "@devWeeder.proto get_padding($(ADDRESS)) $(PORT)")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:PADDING")
    field(SDIS, "$(P)DISABLE")
    field(SCAN, "1 second")
 }
-record(ao, "$(P)RAMPRATE:SP") {
-   field(DESC, "Sets the ramp rate used ")
-   field(DTYP, "stream")
-   field(OUT, "@devWeeder.proto set_ramprate $(PORT)")
-   field(SIML, "$(P)SIM")
-   field(SIOL, "$(P)SIM:RAMPRATE:SP")
-   field(SDIS, "$(P)DISABLE")
-}
 
 record(ai, "$(P)RAMPRATE") {
    field(DESC, "Gets the ramp rate")
    field(DTYP, "stream")
-   field(INP, "@devWeeder.proto get_ramprate $(PORT)")
+   field(INP, "@devWeeder.proto get_ramprate($(ADDRESS)) $(PORT)")
+   field(ASLO, ".01")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:RAMPRATE")
    field(SDIS, "$(P)DISABLE")
    field(SCAN, "1 second")
 }
 
+record(ao, "$(P)RAMPRATE:SP") {
+   field(DESC, "Sets the ramp rate used ")
+   field(DTYP, "stream")
+   field(OUT, "@devWeeder.proto set_ramprate($(ADDRESS)) $(PORT)")
+   field(ASLO, ".01")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:RAMPRATE:SP")
+   field(SDIS, "$(P)DISABLE")
+}
+
 record(ao, "$(P)WAIT:SP") {
     field(DESC, "Sets wait time")
     field(DTYP, "stream")
-    field(OUT, "@devWeeder.proto set_wait $(PORT)")
+    field(OUT, "@devWeeder.proto set_wait($(ADDRESS)) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:WAIT:SP")
     field(SDIS, "$(P)DISABLE")
@@ -103,7 +115,7 @@ alias("$(P)WAIT:SP","$(P)WAIT")
 record(ao, "$(P)DEFAULT:SP") {
    field(DESC, "Sets the default voltage")
    field(DTYP, "stream")
-   field(OUT, "@devWeeder.proto set_default $(PORT)")
+   field(OUT, "@devWeeder.proto set_default($(ADDRESS)) $(PORT)")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:DEFAULT:SP")
    field(SDIS, "$(P)DISABLE")
@@ -112,7 +124,7 @@ record(ao, "$(P)DEFAULT:SP") {
 record(ai, "$(P)DEFAULT") {
    field(DESC, "Gets the default voltage")
    field(DTYP, "stream")
-   field(INP, "@devWeeder.proto get_default $(PORT)")
+   field(INP, "@devWeeder.proto get_default($(ADDRESS)) $(PORT)")
    field(SIML, "$(P)SIM")
    field(SIOL, "$(P)SIM:DEFAULT")
    field(SDIS, "$(P)DISABLE")

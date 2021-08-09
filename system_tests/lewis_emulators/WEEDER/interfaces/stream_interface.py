@@ -2,6 +2,18 @@ from lewis.adapters.stream import StreamInterface, Cmd
 from lewis.utils.command_builder import CmdBuilder
 from lewis.core.logging import has_log
 from lewis.utils.replies import conditional_reply
+import logging
+import threading
+import time
+
+
+def do_ramp(self):
+    while self._device.voltage < self._device.trapezoid:
+        self._device.voltage += (self._device.ramprate/10)
+        time.sleep(0.1)
+    while self._device.voltage > self._device.trapezoid:
+        self._device.voltage -= (self._device.ramprate/10)
+        time.sleep(0.1)
 
 @has_log
 class WeederStreamInterface(StreamInterface):
@@ -20,7 +32,6 @@ class WeederStreamInterface(StreamInterface):
         CmdBuilder("set_wait").escape("W ").int().eos().build(),
         CmdBuilder("set_default").escape("D ").char().escape(" ").int().eos().build(),
         CmdBuilder("get_default").escape("D ").char().eos().build(),
-        #CmdBuilder("set_calibrate").escape("C ").char().escape(" ").char().escape(" ").int().eos().build(), #ask
         CmdBuilder("set_echo").escape("X ").char().escape(" ").int().eos().build(),
 
 #arg("[0-9]{4}")
@@ -35,7 +46,9 @@ class WeederStreamInterface(StreamInterface):
 
     def set_trapezoid(self, address, trapezoid_sp):
         self._device.trapezoid = trapezoid_sp
-        print(f"Get trapezoid {trapezoid_sp} from {address}")
+        x = threading.Thread(target=do_ramp, args=(self,))
+        x.start()
+        print(f"Got trapezoid {trapezoid_sp} from {address}")
 
     def get_trapezoid(self,address):
         return f"T {address} {self._device.trapezoid}"
@@ -56,10 +69,12 @@ class WeederStreamInterface(StreamInterface):
 
     def set_ramprate(self, address, ramprate_sp):
         self._device.ramprate = ramprate_sp
+
         print (f"Get ramp rate {ramprate_sp} from {address}")
 
     def get_ramprate(self,address):
-        return f"R {address} {self._device.padding}"
+        print(f"Get ramp rate {self._device.ramprate} from {address}")
+        return f"R {address} {self._device.ramprate}"
 
     def set_wait(self, wait_sp):
         self._device.wait = wait_sp
