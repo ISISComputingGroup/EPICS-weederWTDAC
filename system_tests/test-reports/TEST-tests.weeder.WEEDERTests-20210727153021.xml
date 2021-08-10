@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.weeder.WEEDERTests-20210727153021" tests="2" file="tests/weeder.py" time="1.745" timestamp="2021-07-27T15:30:29" failures="0" errors="0" skipped="0">
-	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_ramping_voltage_THEN_get_ramping_voltage_correctly" time="0.780" timestamp="2021-07-27T15:30:28" file="tests\weeder.py" line="44"/>
-	<testcase classname="tests.weeder.WEEDERTests" name="test_WHEN_set_voltage_THEN_get_voltage_back_correctly" time="0.965" timestamp="2021-07-27T15:30:29" file="tests\weeder.py" line="42"/>
-</testsuite>
