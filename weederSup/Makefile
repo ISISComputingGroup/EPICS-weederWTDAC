@@ -6,6 +6,7 @@ include $(TOP)/configure/CONFIG
 DATA += devWeeder.proto
 
 DB += devWeeder.db
+DB += devWeeder_ramping.db
 
 #=======================================
 include $(TOP)/configure/RULES

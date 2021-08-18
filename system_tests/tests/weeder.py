@@ -35,26 +35,37 @@ class WEEDERTests(unittest.TestCase):
         self.ca = ChannelAccess(default_timeout=20, default_wait_time=0.0, device_prefix=DEVICE_A_PREFIX)
 
     def test_WHEN_set_voltage_THEN_get_voltage_back_correctly(self):
-        self.ca.assert_setting_setpoint_sets_readback(100, "VOLT")
+        self.ca.set_pv_value("VOLT", 100)
 
-    def test_WHEN_set_trapezoid_ramping_voltage_THEN_get_ramping_voltage_correctly(self):
-        self.ca.assert_setting_setpoint_sets_readback(100, "RAMPVOLT_T")
+    def test_WHEN_set_rampon_THEN_get_rampon_is_on_(self):
+        self.ca.set_pv_value("RAMPON", "ON")
 
-    def test_WHEN_set_scurve_ramping_voltage_THEN_get_ramping_voltage_correctly(self):
-        self.ca.assert_setting_setpoint_sets_readback(100, "RAMPVOLT_S")
+    def test_WHEN_ramping_up_THEN_voltage_is_ramped_correctly(self):
+        start_voltage = 0 # V
 
-    def test_WHEN_set_padding_THEN_get_padding_correctly(self):
-        self.ca.assert_setting_setpoint_sets_readback(100, "PADDING")
+        target_voltage = 1  # V
 
-    def test_WHEN_set_ramp_rate_THEN_get_ramp_rate_correctly(self):
-        self.ca.assert_setting_setpoint_sets_readback(100, "RAMPRATE")
+        # secs - The test will take at least this long to run but if it's too small may get random timing problems
+        # causing the test to fail
+        ramp_time = 20
 
-    def test_WHEN_set_wait_THEN_get_wait_correctly(self):
-        self.ca.set_pv_value("WAIT", 10)
-        self._lewis.assert_that_emulator_value_is("wait", str(10))
+        ramp_rate = target_voltage * 60 / ramp_time  # V per min
 
-    def test_WHEN_set_default_voltage_THEN_get_default_voltage_correctly(self):
-        self.ca.assert_setting_setpoint_sets_readback(100, "DEFAULT")
+        # Ensure ramp is off and setpoint is zero initially
+        self.ca.set_pv_value("RAMPON:SP", "OFF")
+        self.ca.set_pv_value("VOLT:SP", start_voltage)
+        self.ca.assert_that_pv_is("RAMPING", "NO")
+        self.ca.assert_that_pv_is("OUT_SP", 0.0)
 
-    # def test_WHEN_set_calibrate_THEN_get_calibrate_correctly(self):
-    #     self.ca.assert_setting_setpoint_sets_readback(100, -100, "CALIBRATE")
+        # Set up ramp and set a setpoint so that the ramp starts.
+        self.ca.assert_setting_setpoint_sets_readback(ramp_rate, "RAMP:RATE")
+        self.ca.set_pv_value("RAMPON:SP", "ON")
+        self.ca.set_pv_value("VOLT:SP", target_voltage, wait=True)
+
+        # Verify that setpoint does not reach final value within first half of ramp time
+        self.ca.assert_that_pv_is_not("OUT_SP", target_voltage, timeout=ramp_time/2)
+
+        # ... But after a further ramp_time, it should have.
+        # We give it another 3 seconds here in case it hasn't finished ramping.
+        self.ca.assert_that_pv_is("OUT_SP", target_voltage, timeout=ramp_time+3)
+
