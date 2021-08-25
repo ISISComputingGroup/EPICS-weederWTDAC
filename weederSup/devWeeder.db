@@ -16,8 +16,6 @@ record(ao, "$(P)_VOLT:SP") {
    # Setting precision to 2, as the input sent to the device is
    # 1/100 of a volt.
    field(PREC, "2")
-
-   info(INTEREST, "HIGH")
 }
 record(ai, "$(P)VOLT") {
    field(DESC, "Gets the voltage")
@@ -31,7 +29,7 @@ record(ai, "$(P)VOLT") {
    field(SCAN, "1 second")
    field(PREC, "2")
    info(INTEREST, "HIGH")
-
+   info(archive, "VAL")
 }
 
 record(bo, "$(P)DISABLE")
