@@ -34,11 +34,14 @@ class WEEDERTests(unittest.TestCase):
         self._lewis, self._ioc = get_running_lewis_and_ioc(DEVICE_A_PREFIX, DEVICE_A_PREFIX)
         self.ca = ChannelAccess(default_timeout=20, default_wait_time=0.0, device_prefix=DEVICE_A_PREFIX)
 
+        self.ca.set_pv_value("RAMPON:SP", "OFF")
+        self.ca.assert_that_pv_is("RAMPING", "NO")
+
     def test_WHEN_set_voltage_THEN_get_voltage_back_correctly(self):
-        self.ca.set_pv_value("VOLT", 100)
+        self.ca.assert_setting_setpoint_sets_readback(100, "VOLT")
 
     def test_WHEN_set_rampon_THEN_get_rampon_is_on_(self):
-        self.ca.set_pv_value("RAMPON", "ON")
+        self.ca.assert_setting_setpoint_sets_readback("ON", "RAMPON")
 
     def test_WHEN_ramping_up_THEN_voltage_is_ramped_correctly(self):
         start_voltage = 0 # V
@@ -51,10 +54,8 @@ class WEEDERTests(unittest.TestCase):
 
         ramp_rate = target_voltage * 60 / ramp_time  # V per min
 
-        # Ensure ramp is off and setpoint is zero initially
-        self.ca.set_pv_value("RAMPON:SP", "OFF")
+        # Ensure setpoint is zero initially
         self.ca.set_pv_value("VOLT:SP", start_voltage)
-        self.ca.assert_that_pv_is("RAMPING", "NO")
         self.ca.assert_that_pv_is("OUT_SP", 0.0)
 
         # Set up ramp and set a setpoint so that the ramp starts.
