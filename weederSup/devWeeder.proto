@@ -1,0 +1,59 @@
+OutTerminator = "\r\n";
+InTerminator = "\r\r\n";
+ReplyTimeout = 2000;
+
+
+set_voltage {
+	out "V \$1 %d";
+}
+get_voltage {
+	out "V \$1";
+    in "V \$1 %d";
+}
+set_trapezoid {
+    out "T \$1 %d";
+
+}
+
+get_trapezoid {
+    out "T \$1";
+    in "T \$1 %d";
+}
+set_scurve {
+    out "S \$1 %d";
+
+}
+get_scurve {
+    out "S \$1";
+    in "S \$1 %d";
+}
+set_padding {
+    out "P \$1 %d";
+}
+get_padding {
+    out "P \$1";
+    in "P \$1 %d";
+}
+set_ramprate {
+    out "R \$1 %d";
+
+}
+get_ramprate {
+    out "R \$1";
+    in "R \$1 %d";
+}
+set_wait {
+    out "W %d";
+}
+set_default {
+    out "D \$1 %d";
+}
+get_default {
+    out "D \$1";
+    in "D \$1 %d";
+}
+
+set_echo {
+    out "X %d";
+
+}

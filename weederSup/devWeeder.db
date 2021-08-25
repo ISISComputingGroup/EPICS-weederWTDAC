@@ -1,0 +1,63 @@
+
+record(ao, "$(P)_VOLT:SP") {
+   field(DESC, "Sets the voltage")
+   field(DTYP, "stream")
+   field(EGU, "V")
+   field(OUT, "@devWeeder.proto set_voltage($(ADDRESS)) $(PORT)")
+
+   # ASLO (Adjustment Slope) is used to get user input in V and
+   #convert to cV to send to the device. (e.g. write 5V to the record
+   #but send 500 cV to the device)
+   field(ASLO, ".01")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:VOLT:SP")
+   field(SDIS, "$(P)DISABLE")
+
+   # Setting precision to 2, as the input sent to the device is
+   # 1/100 of a volt.
+   field(PREC, "2")
+}
+record(ai, "$(P)VOLT") {
+   field(DESC, "Gets the voltage")
+   field(DTYP, "stream")
+   field(EGU, "V")
+   field(INP, "@devWeeder.proto get_voltage($(ADDRESS)) $(PORT)")
+   field(ASLO, ".01")
+   field(SIML, "$(P)SIM")
+   field(SIOL, "$(P)SIM:VOLT")
+   field(SDIS, "$(P)DISABLE")
+   field(SCAN, "1 second")
+   field(PREC, "2")
+   info(INTEREST, "HIGH")
+   info(archive, "VAL")
+}
+
+record(bo, "$(P)DISABLE")
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+## SIMULATION STUFF ##
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+alias("$(P)SIM", "$(P)SIM:SP")
+
+record(ai, "$(P)SIM:VOLT") {
+   field(SCAN, "Passive")
+   field(DTYP, "Soft Channel")
+}
+
+alias("$(P)SIM:VOLT","$(P)SIM:VOLT:SP")
+alias("$(P)SIM:VOLT","$(P)SIM:VOLT:SP:RBV")
+
+
