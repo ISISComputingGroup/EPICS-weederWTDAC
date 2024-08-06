@@ -1,10 +1,7 @@
-from lewis.adapters.stream import StreamInterface, Cmd
-from lewis.utils.command_builder import CmdBuilder
+from lewis.adapters.stream import StreamInterface
 from lewis.core.logging import has_log
-from lewis.utils.replies import conditional_reply
-import logging
-import threading
-import time
+from lewis.utils.command_builder import CmdBuilder
+
 
 #
 # def do_ramp(self):
@@ -16,11 +13,9 @@ import time
 #         time.sleep(0.1)
 @has_log
 class WeederStreamInterface(StreamInterface):
-
     commands = {
         CmdBuilder("set_voltage").escape("V ").char().escape(" ").int().eos().build(),
         CmdBuilder("get_voltage").escape("V ").char().eos().build(),
-
     }
     in_terminator = "\r\n"
     out_terminator = "\r\r\n"
@@ -34,4 +29,3 @@ class WeederStreamInterface(StreamInterface):
 
     def handle_error(self, request, error):
         print("An error occurred at request " + repr(request) + ": " + repr(error))
-

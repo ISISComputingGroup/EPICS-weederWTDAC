@@ -5,4 +5,5 @@ class DefaultState(State):
     """
     Default state of the system (it only has one)
     """
-    NAME = 'Default'
+
+    NAME = "Default"
