@@ -19,7 +19,6 @@ IOCS = [
         "emulator": EMULATOR_DEVICE,
         "emulator_id": DEVICE_A_PREFIX,
     },
-
 ]
 
 TEST_MODES = [TestModes.RECSIM, TestModes.DEVSIM]
@@ -32,7 +31,9 @@ class WEEDERTests(unittest.TestCase):
 
     def setUp(self):
         self._lewis, self._ioc = get_running_lewis_and_ioc(DEVICE_A_PREFIX, DEVICE_A_PREFIX)
-        self.ca = ChannelAccess(default_timeout=20, default_wait_time=0.0, device_prefix=DEVICE_A_PREFIX)
+        self.ca = ChannelAccess(
+            default_timeout=20, default_wait_time=0.0, device_prefix=DEVICE_A_PREFIX
+        )
 
         self.ca.set_pv_value("RAMPON:SP", "OFF")
         self.ca.assert_that_pv_is("RAMPING", "NO")
@@ -44,7 +45,7 @@ class WEEDERTests(unittest.TestCase):
         self.ca.assert_setting_setpoint_sets_readback("ON", "RAMPON")
 
     def test_WHEN_ramping_up_THEN_voltage_is_ramped_correctly(self):
-        start_voltage = 0 # V
+        start_voltage = 0  # V
 
         target_voltage = 1  # V
 
@@ -64,9 +65,8 @@ class WEEDERTests(unittest.TestCase):
         self.ca.set_pv_value("VOLT:SP", target_voltage, wait=True)
 
         # Verify that setpoint does not reach final value within first half of ramp time
-        self.ca.assert_that_pv_is_not("OUT_SP", target_voltage, timeout=ramp_time/2)
+        self.ca.assert_that_pv_is_not("OUT_SP", target_voltage, timeout=ramp_time / 2)
 
         # ... But after a further ramp_time, it should have.
         # We give it another 3 seconds here in case it hasn't finished ramping.
-        self.ca.assert_that_pv_is("OUT_SP", target_voltage, timeout=ramp_time+3)
-
+        self.ca.assert_that_pv_is("OUT_SP", target_voltage, timeout=ramp_time + 3)
