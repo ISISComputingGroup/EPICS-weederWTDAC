@@ -1,10 +1,8 @@
-from lewis.adapters.stream import StreamInterface, Cmd
-from lewis.utils.command_builder import CmdBuilder
+
+from lewis.adapters.stream import StreamInterface
 from lewis.core.logging import has_log
-from lewis.utils.replies import conditional_reply
-import logging
-import threading
-import time
+from lewis.utils.command_builder import CmdBuilder
+
 
 #
 # def do_ramp(self):
